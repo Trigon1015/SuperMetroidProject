@@ -141,6 +141,7 @@ MonoBehaviour:
   rb: {fileID: 1484245261124155238}
   moveDir: {x: 1, y: 0}
   impactEffect: {fileID: 7488869507262733365, guid: b28e536edca1958458a7c725dcd61da3, type: 3}
+  damageAmount: 1
 --- !u!50 &1484245261124155238
 Rigidbody2D:
   serializedVersion: 4

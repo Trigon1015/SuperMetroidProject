@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - FreezeBeam
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Shot
   - Player
   - Destructable
-  - 
+  - Pickups
   - 
   - 
   - 
@@ -46,4 +49,7 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 2275487409
+    locked: 0
+  - name: Canvas
+    uniqueID: 938302661
     locked: 0
