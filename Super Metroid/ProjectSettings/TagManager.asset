@@ -53,3 +53,6 @@ TagManager:
   - name: Canvas
     uniqueID: 938302661
     locked: 0
+  - name: Door
+    uniqueID: 3036129363
+    locked: 0

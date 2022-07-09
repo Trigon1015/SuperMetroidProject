@@ -53,6 +53,7 @@ public class SentinelController : MonoBehaviour
 
     private void Update()
     {
+       
         if (init)
         {
             if (freezeCounter > 0)

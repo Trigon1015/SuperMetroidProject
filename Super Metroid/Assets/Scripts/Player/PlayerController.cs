@@ -6,15 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Transform player;
+    public Transform ballT;
     public float moveSpeed;
     public float jumpForce;
     public Transform groundPoint;
+    public Transform groundPointB;
     public Transform standPoint;
     public Transform topRight;
     public Transform bottomLeft;
     
     
+    
+    
     private bool isGrounded;
+    private bool isGroundedB;
     private bool cantStand;
    
 
@@ -28,7 +33,13 @@ public class PlayerController : MonoBehaviour
     public Transform shotPoint;
     public Transform shotUpPoint;
     public Transform duckPoint;
-    public bool duck = false;
+    private bool duck = false;
+
+    //jump
+    private float jumpTimeCounter;
+    public float jumpTime;
+    private bool isJumping;
+
 
     //double Jump
     private bool canDoubleJump;
@@ -58,231 +69,291 @@ public class PlayerController : MonoBehaviour
 
 
     private PlayerAbilityTracker abilities;
+    public bool canMove;
 
     void Start()
     {
-        //abilities = GetComponent<PlayerAbilityTracker>();
+        abilities = GetComponent<PlayerAbilityTracker>();
+        canMove = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dashRechargeCounter > 0)
+        if (canMove)
         {
-            dashRechargeCounter -= Time.deltaTime;
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && PlayerAbilityTracker.canDash)
-            {
-                dashCounter = dashTime;
-                ShowAfterImage();
-            }
-        }
-        if (dashCounter > 0)
-        {
-            dashCounter = dashCounter - Time.deltaTime;
-            rb.velocity = new Vector2(dashSpeed * transform.localScale.x, 0);
-            afterImageCounter -= Time.deltaTime;
-            if(afterImageCounter <= 0)
-            {
-                ShowAfterImage();
-            }
-            dashRechargeCounter = DashCD;
-        }
-        else
-        {
-            
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
-            
-            //flip 
-            if (rb.velocity.x < 0)
-            {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-                shotUpPoint.eulerAngles = new Vector3(180f, 0f, -90f);
-            }
-            else if (rb.velocity.x > 0)
-            {
-                transform.localScale = Vector3.one;
-                shotUpPoint.eulerAngles = new Vector3(180f, 0f, 270f);
-            }
 
-            //gravity reverse
-            if(reversed)
+
+            if (dashRechargeCounter > 0)
             {
-                rb.gravityScale = -5;
-                player.eulerAngles = new Vector3 (0f, 180f, 180f);
-                
+                dashRechargeCounter -= Time.deltaTime;
             }
             else
             {
-                rb.gravityScale = 5;
-                player.eulerAngles = new Vector3(0f, 0f, 0f);
+                if (Input.GetKeyDown(KeyCode.LeftShift) && PlayerAbilityTracker.canDash)
+                {
+                    dashCounter = dashTime;
+                    ShowAfterImage();
+                }
             }
-        }
-
-
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, 0.2f, whatIsGround);
-        cantStand = Physics2D.OverlapArea(topRight.position, bottomLeft.position, whatIsGround);
-
-        if (Input.GetButtonDown("Jump") && (isGrounded || ((canDoubleJump && PlayerAbilityTracker.canDoubleJump)&& standing.activeSelf)) )
-        {
-            
-            if (isGrounded)
+            if (dashCounter > 0)
             {
-                duck = false;
-                anim.SetBool("duck", duck);
-                canDoubleJump = true;
+                dashCounter = dashCounter - Time.deltaTime;
+                rb.velocity = new Vector2(dashSpeed * transform.localScale.x, 0);
+                afterImageCounter -= Time.deltaTime;
+                if (afterImageCounter <= 0)
+                {
+                    ShowAfterImage();
+                }
+                dashRechargeCounter = DashCD;
             }
             else
             {
-                canDoubleJump = false;
 
-                anim.SetTrigger("doubleJump");
-                
+                rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+
+                //flip 
+                if (rb.velocity.x < 0)
+                {
+                    transform.localScale = new Vector3(-1f, 1f, 1f);
+                    shotUpPoint.eulerAngles = new Vector3(180f, 0f, -90f);
+                }
+                else if (rb.velocity.x > 0)
+                {
+                    transform.localScale = Vector3.one;
+                    shotUpPoint.eulerAngles = new Vector3(180f, 0f, 270f);
+                }
+
+                //gravity reverse
+
+
+                if (Input.GetKeyDown(KeyCode.Q) && PlayerAbilityTracker.canGravityReverse && ball.activeSelf && (isGrounded || isGroundedB))
+                {
+
+
+                    if (!reversed)
+                    {
+                        rb.gravityScale = -5;
+
+
+                        ballT.Rotate(0.0f, -180.0f, -180.0f);
+
+                        reversed = !reversed;
+
+                    }
+                    else
+                    {
+                        rb.gravityScale = 5;
+
+                        ballT.Rotate(0.0f, -180.0f, -180.0f);
+
+
+                        reversed = !reversed;
+                    }
+
+                }
+
             }
 
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             
-        }
 
-        //gravity reverse
-        if(Input.GetKeyDown(KeyCode.Q)&& PlayerAbilityTracker.canGravityReverse && ball.activeSelf)
-        {
-            reversed = !reversed;
-        }
+            isGroundedB = Physics2D.OverlapCircle(groundPointB.position, 0.2f, whatIsGround);
+            isGrounded = Physics2D.OverlapCircle(groundPoint.position, 0.2f, whatIsGround);
+            cantStand = Physics2D.OverlapArea(topRight.position, bottomLeft.position, whatIsGround);
 
-        //duck
-        if(rb.velocity.x > 0.1 || rb.velocity.x < -0.1)
-        {
-            duck = false;
-            anim.SetBool("duck", duck);
-            
-        }
-        if (Input.GetAxisRaw("Vertical") < -0.9f && standing.activeSelf && isGrounded&&(rb.velocity.x < 0.1 && rb.velocity.x > -0.1))
-        {
-            duck = true;
-            anim.SetBool("duck", duck);
-        }
-        if (duck)
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                duck = false;
-                anim.SetBool("duck", duck);
-            }
-
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Jump") && (isGrounded || ((canDoubleJump && PlayerAbilityTracker.canDoubleJump) && standing.activeSelf)))
             {
 
-                if (standing.activeSelf && !PlayerAbilityTracker.canFreeze)
-                {
-
-                    Instantiate(BaseBullet, duckPoint.position, duckPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
-
-                }
-                else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
-                {
-                    Instantiate(freezeBeam, duckPoint.position, duckPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
-
-                }
-
-            }
-        }
-
-            //shooting up
-        if (Input.GetKey(KeyCode.W) && standing.activeSelf&& isGrounded && (rb.velocity.x < 0.1 && rb.velocity.x > -0.1) && !duck)
-        {
-             anim.SetBool("shotUp", true);
-            
-            if (Input.GetButtonDown("Fire1") )
-            {
-                
-                if (standing.activeSelf && !PlayerAbilityTracker.canFreeze)
-                {
-
-                    Instantiate(BaseBullet, shotUpPoint.position, shotUpPoint.rotation).moveDir = new Vector2(0f, transform.localScale.y);
-
-                }
-                else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
-                {
-                    Instantiate(freezeBeam, shotUpPoint.position, shotUpPoint.rotation).moveDir = new Vector2(0f, transform.localScale.y);
-
-
-                }
-
-            }
-                
-        }
-        else if(!duck)
-        {
-            anim.SetBool("shotUp", false);
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (standing.activeSelf && !PlayerAbilityTracker.canFreeze)
-                {
-
-
-                    Instantiate(BaseBullet, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
-                    anim.SetTrigger("shotFired");
-                    
-
-
-
-                }
-                else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
-                {
-                    Instantiate(freezeBeam, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
-
-                    anim.SetTrigger("shotFired");
-                   
-                }
-                else if (ball.activeSelf && PlayerAbilityTracker.canDropBomb)
-                {
-                    
-                    Instantiate(bomb, bombPoint.position, bombPoint.rotation);
-                }
-            }
-        }
-       //ball mode
-       if(!ball.activeSelf)
-        {
-            if(Input.GetAxisRaw("Vertical") < -0.9f && PlayerAbilityTracker.canMorphball)
-            {
-                ballCounter -= Time.deltaTime;
-                if(ballCounter <= 0)
+                if (isGrounded)
                 {
                     duck = false;
                     anim.SetBool("duck", duck);
-                    ball.SetActive(true);
-                    standing.SetActive(false);
-                
+                    canDoubleJump = true;
+
+
+                }
+                else
+                {
+                    canDoubleJump = false;
+
+                    anim.SetTrigger("doubleJump");
+
+                }
+
+
+                isJumping = true;
+                jumpTimeCounter = jumpTime;
+
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+
+            }
+
+
+            
+            if (Input.GetKey(KeyCode.Space) && isJumping)
+            {
+
+
+                if (jumpTimeCounter > 0)
+                {
+                    jumpTimeCounter -= Time.deltaTime;
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        Debug.Log("!");
+                    }
+                }
+                else
+                {
+                    isJumping = false;
                 }
             }
-            else
+            if (Input.GetKeyUp(KeyCode.Space))
             {
-                ballCounter = waitToBall;
+                isJumping = false;
+
             }
-        }
-        else 
-        {
-            if ((Input.GetAxisRaw("Vertical") > 0.9f)&& !cantStand)
+
+
+
+            //duck
+            if (rb.velocity.x > 0.1 || rb.velocity.x < -0.1)
             {
-                ballCounter -= Time.deltaTime;
-                if (ballCounter <= 0)
+                duck = false;
+                anim.SetBool("duck", duck);
+
+            }
+            if (Input.GetAxisRaw("Vertical") < -0.9f && standing.activeSelf && isGrounded && (rb.velocity.x < 0.1 && rb.velocity.x > -0.1))
+            {
+                duck = true;
+                anim.SetBool("duck", duck);
+            }
+            if (duck)
+            {
+                if (Input.GetKey(KeyCode.W))
                 {
-                    ball.SetActive(false);
-                    standing.SetActive(true);
+                    duck = false;
+                    anim.SetBool("duck", duck);
+                }
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+
+                    if (standing.activeSelf && !PlayerAbilityTracker.canFreeze)
+                    {
+
+                        Instantiate(BaseBullet, duckPoint.position, duckPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+
+                    }
+                    else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
+                    {
+                        Instantiate(freezeBeam, duckPoint.position, duckPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+
+                    }
 
                 }
             }
+
+            //shooting up
+            if (Input.GetKey(KeyCode.W) && standing.activeSelf && isGrounded && (rb.velocity.x < 0.1 && rb.velocity.x > -0.1) && !duck)
+            {
+                anim.SetBool("shotUp", true);
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+
+                    if (standing.activeSelf && !PlayerAbilityTracker.canFreeze)
+                    {
+
+                        Instantiate(BaseBullet, shotUpPoint.position, shotUpPoint.rotation).moveDir = new Vector2(0f, transform.localScale.y);
+
+                    }
+                    else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
+                    {
+                        Instantiate(freezeBeam, shotUpPoint.position, shotUpPoint.rotation).moveDir = new Vector2(0f, transform.localScale.y);
+
+
+                    }
+
+                }
+
+            }
+            else if (!duck)
+            {
+                anim.SetBool("shotUp", false);
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    if (standing.activeSelf && !PlayerAbilityTracker.canFreeze)
+                    {
+
+
+                        Instantiate(BaseBullet, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+                        anim.SetTrigger("shotFired");
+
+
+
+
+                    }
+                    else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
+                    {
+                        Instantiate(freezeBeam, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+
+                        anim.SetTrigger("shotFired");
+
+                    }
+                    else if (ball.activeSelf && PlayerAbilityTracker.canDropBomb)
+                    {
+
+                        Instantiate(bomb, bombPoint.position, bombPoint.rotation);
+                    }
+                }
+            }
+            //ball mode
+            if (!ball.activeSelf)
+            {
+                if (Input.GetAxisRaw("Vertical") < -0.9f && PlayerAbilityTracker.canMorphball)
+                {
+                    ballCounter -= Time.deltaTime;
+                    if (ballCounter <= 0)
+                    {
+                        duck = false;
+                        anim.SetBool("duck", duck);
+                        ball.SetActive(true);
+                        standing.SetActive(false);
+
+                    }
+                }
+                else
+                {
+                    ballCounter = waitToBall;
+                }
+            }
             else
             {
-                ballCounter = waitToBall;
+                if ((Input.GetAxisRaw("Vertical") > 0.9f) && !cantStand)
+                {
+                    ballCounter -= Time.deltaTime;
+                    if (ballCounter <= 0)
+                    {
+                        ball.SetActive(false);
+                        standing.SetActive(true);
+
+                    }
+                }
+                else
+                {
+                    ballCounter = waitToBall;
+                }
             }
+
         }
-        
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
         if(standing.activeSelf)
         {
             anim.SetBool("isGrounded", isGrounded);
@@ -325,5 +396,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
+   
+    
+
+    
     
 }
