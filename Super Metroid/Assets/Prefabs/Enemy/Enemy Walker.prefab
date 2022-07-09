@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6832905542733119557}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Patrol Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6832905542841120279}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Patrol Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6832905543688879600}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Patrol Point (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6832905543764717894}
   - component: {fileID: 6832905543764717892}
   - component: {fileID: 6832905543764717895}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 6832905543881431726}
   - component: {fileID: 3643321886407597073}
   - component: {fileID: 3643321886407597072}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Enemy Walker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa357fe0c61089449f367c43e46d395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 3
+  totalHealth: 10
   deathEffect: {fileID: 1632956315074974867, guid: db60a567218a834428a2871798abd44a, type: 3}
   sprite: {fileID: 6832905543764717892}
 --- !u!114 &6832905543881431726
@@ -364,7 +364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6832905544186844285}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Patrol Point (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -63,7 +63,7 @@ public class EnemyStateControllerF : MonoBehaviour
        
         sprite.color = Color.white;
         freezeCounter = freezeTime;
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

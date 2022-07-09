@@ -63,7 +63,7 @@ public class EnemyStateController : MonoBehaviour
         rb.isKinematic = false;
         sprite.color = Color.white;
         freezeCounter = freezeTime;
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
     

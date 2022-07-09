@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
-    public int totalHealth = 3;
+    public int totalHealth = 10;
     public GameObject deathEffect;
     public SpriteRenderer sprite;
     

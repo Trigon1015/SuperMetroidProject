@@ -9,6 +9,9 @@ public class BombController : MonoBehaviour
 
     public float blastRange;
     public LayerMask whatIsDestructable;
+    public LayerMask whatIsDamageable;
+    public int damageAmount;
+   
 
     
     // Update is called once per frame
@@ -24,13 +27,30 @@ public class BombController : MonoBehaviour
 
             Destroy(gameObject);
 
-            Collider2D[] objectsToRemove = Physics2D.OverlapCircleAll(transform.position, blastRange, whatIsDestructable);
 
-            if(objectsToRemove.Length > 0)
+            Collider2D[] objectsToRemove = Physics2D.OverlapCircleAll(transform.position, blastRange, whatIsDestructable);
+            if (objectsToRemove.Length > 0)
             {
                 foreach(Collider2D col in objectsToRemove)
                 {
                     Destroy(col.gameObject);
+                }
+            }
+
+            Collider2D[] objectsToDamage = Physics2D.OverlapCircleAll(transform.position, blastRange, whatIsDamageable);
+            
+            foreach (Collider2D col in objectsToDamage)
+            {
+                
+                EnemyHealthController enemyHealth = col.GetComponent<EnemyHealthController>();
+                if(enemyHealth != null)
+                {
+                    Debug.Log("hurt");
+                    enemyHealth.DamageEnemy(damageAmount);
+                }
+                else
+                {
+                    Debug.Log("???");
                 }
             }
         }
