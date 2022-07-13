@@ -31,11 +31,13 @@ public class Ghost : MonoBehaviour
 
     private void Start()
     {
+        
         theCam = FindObjectOfType<CameraController>();
         theCam.enabled = false;
 
         activeCounter = activeTime;
         shotCounter = timeBetweenShots1;
+        AudioManager.instance.PlayBossMusic();
     }
 
     private void Update()

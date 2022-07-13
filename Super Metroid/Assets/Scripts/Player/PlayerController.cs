@@ -76,6 +76,9 @@ public class PlayerController : MonoBehaviour
         abilities = GetComponent<PlayerAbilityTracker>();
         canMove = true;
         
+        
+       
+        
     }
 
     // Update is called once per frame

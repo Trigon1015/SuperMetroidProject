@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7242113535511757645}
   anim: {fileID: 7242113535511757640}
-  freezeTime: 10
+  freezeTime: 5
   sprite: {fileID: 7242113535511757641}
 --- !u!61 &7242113535511757646
 BoxCollider2D:
@@ -171,7 +171,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 6
 --- !u!114 &7242113535511757643
 MonoBehaviour:
@@ -200,6 +200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa357fe0c61089449f367c43e46d395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 100
+  totalHealth: 10
   deathEffect: {fileID: 3999707339310152021, guid: 51d56e647f3494f489123ca35d811b6a, type: 3}
   sprite: {fileID: 7242113535511757641}

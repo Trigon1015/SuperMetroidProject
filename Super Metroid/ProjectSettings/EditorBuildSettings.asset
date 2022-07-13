@@ -6,15 +6,57 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Levels/Main Menu.unity
     guid: aa5424f7fcf84c34781862b930fb2874
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Levels/Room1.unity
+    guid: 66f5e272a7863a340a1467cdf79661b7
   - enabled: 1
-    path: Assets/Scenes/TestBox.unity
-    guid: e271b0d3b62bd3c448b322540ea00759
+    path: Assets/Scenes/Levels/Room2.unity
+    guid: f35b1c028e7f36e4db2fa6b552240586
   - enabled: 1
-    path: Assets/Scenes/test1.unity
-    guid: 62db4c44bbb2784469f96ab138124f5f
+    path: Assets/Scenes/Levels/Room3.unity
+    guid: 712dc39c668b1644faa454c26dc16028
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room4.unity
+    guid: cb2dc7cfb4d13064ca83663a7f5b7adc
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room5.unity
+    guid: 231ac806549803d409e0225efcd2fa27
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room6.unity
+    guid: b34b060d25faf284ca919b86ba50af11
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room7.unity
+    guid: 0f8683367dad3ec438453380cb8ba389
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room8.unity
+    guid: 986fcab055139f544b014b4bf2613136
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room9Boss.unity
+    guid: 5e02308ecc54c2840a0fc8045c142299
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room10.unity
+    guid: 8375a14cba650be40a8da44ae49a7ccd
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room11.unity
+    guid: 3f809625acadd474ca15867e0fbd2322
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room12.unity
+    guid: 94d32e5afc10ae143a7ce9d46217dc20
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room13.unity
+    guid: 9bf0f94d7e8513d47867332a9126083f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room14.unity
+    guid: 5fc0fde89b20c8b4d946b4335315bfd8
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room15.unity
+    guid: 0870c94402e155247a454d64d72fb0a0
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room16.unity
+    guid: 33eaefe2c3b44554183af1bd3349d629
+  - enabled: 1
+    path: Assets/Scenes/Levels/Room17.unity
+    guid: 0125ccef5358c18429bcbe4f3dac5fff
   m_configObjects: {}

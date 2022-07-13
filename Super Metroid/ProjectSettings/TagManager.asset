@@ -42,11 +42,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: Background
+    uniqueID: 3331417149
     locked: 0
   - name: Player
     uniqueID: 2899886279
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Platform
     uniqueID: 2275487409
@@ -56,4 +59,7 @@ TagManager:
     locked: 0
   - name: Door
     uniqueID: 3036129363
+    locked: 0
+  - name: Secret
+    uniqueID: 612400581
     locked: 0

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class RespawnController : MonoBehaviour
 {
     public static RespawnController instance;
+    
     public void Awake()
     {
 
@@ -40,6 +41,7 @@ public class RespawnController : MonoBehaviour
 
     public void SetSpawn(Vector3 newPosition)
     {
+        
         respawnPoint = newPosition;
     }
 

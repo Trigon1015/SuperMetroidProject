@@ -11,7 +11,7 @@ public class EnemyStateControllerF : MonoBehaviour
     private float freezeCounter;
     public SpriteRenderer sprite;
 
-    private bool init = true;
+    public bool init = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,6 @@ public class EnemyStateControllerF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (init)
         {
             if (freezeCounter > 0)
@@ -36,6 +35,7 @@ public class EnemyStateControllerF : MonoBehaviour
                 init = false;
             }
         }
+
 
 
 

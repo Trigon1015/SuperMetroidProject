@@ -43,8 +43,11 @@ public class BulletController : MonoBehaviour
         if(other.tag == "Enemy")
         {
             other.GetComponent<EnemyHealthController>().DamageEnemy(damageAmount);
+           
+            
             
         }
+        
 
         if(other.tag == "Boss")
         {
