@@ -23,7 +23,7 @@ public class WallBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("yes");
+       
         if (other.gameObject.tag == "Player")
         {
             PlayerHealthController.instance.DamagePlayer(damageAmount);

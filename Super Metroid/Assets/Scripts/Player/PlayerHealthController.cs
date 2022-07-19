@@ -2,22 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
+
 
 public class PlayerHealthController : MonoBehaviour
 {
     public static PlayerHealthController instance;
+
+
     private void Awake()
     {
+
+
+
+
+
+
+
         if (instance == null)
         {
+
             instance = this;
+
+
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
+            
             Destroy(gameObject);
+            
         }
-    }
+            
+       
+        
+           
+     }
+        
+    
 
     
     public int currentHealth;
@@ -34,6 +58,7 @@ public class PlayerHealthController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         currentHealth = maxHealth;
 
         UiController.instance.UpdateHealth(currentHealth, maxHealth);
@@ -43,6 +68,9 @@ public class PlayerHealthController : MonoBehaviour
     void Update()
     {
        
+        
+
+
         if (invincCounter > 0)
         {
             invincCounter -= Time.deltaTime;
@@ -78,10 +106,12 @@ public class PlayerHealthController : MonoBehaviour
                 currentHealth = 0;
                 //gameObject.SetActive(false);
                 RespawnController.instance.Respawn();
+                AudioManager.instance.PlaySFX(8);
             }
             else
             {
                 invincCounter = invincibilityLength;
+                AudioManager.instance.PlaySFXAdjusted(11);
             }
 
             UiController.instance.UpdateHealth(currentHealth, maxHealth);
@@ -97,7 +127,7 @@ public class PlayerHealthController : MonoBehaviour
     public void HealPlayer(int healAmount)
     {
         maxHealth = maxHealth + healAmount;
-        currentHealth += healAmount;
+        currentHealth = maxHealth;
         /*
         if(currentHealth > maxHealth)
         {

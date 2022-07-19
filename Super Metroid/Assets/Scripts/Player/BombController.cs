@@ -45,14 +45,12 @@ public class BombController : MonoBehaviour
                 EnemyHealthController enemyHealth = col.GetComponent<EnemyHealthController>();
                 if(enemyHealth != null)
                 {
-                    Debug.Log("hurt");
+                    
                     enemyHealth.DamageEnemy(damageAmount);
                 }
-                else
-                {
-                    Debug.Log("???");
-                }
+                
             }
+            AudioManager.instance.PlaySFXAdjusted(4);
         }
     }
 }

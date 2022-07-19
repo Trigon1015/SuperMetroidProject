@@ -29,7 +29,7 @@ public class EnemyHealthController : MonoBehaviour
             {
                 patroller.DestroyPatrolPoints();
             }
-
+            AudioManager.instance.PlaySFX(4);
             Destroy(gameObject);
         }
     }

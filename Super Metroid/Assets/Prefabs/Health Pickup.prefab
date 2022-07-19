@@ -114,5 +114,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee62277b3f046e646a86fb9bdb245b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmount: 100
+  healthAmount: 50
   pickupEffect: {fileID: 2491329291023197126, guid: 45119a6e840ca8d44ade96c3ac74acae, type: 3}

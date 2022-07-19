@@ -377,6 +377,7 @@ MonoBehaviour:
   unlockMorphBall: 1
   unlockDropBomb: 1
   unlockFreeze: 1
+  unlockGravityReverse: 1
   pickupEffect: {fileID: 4481939477474447897, guid: b93fba5a32b8d30439d684e4d095872d, type: 3}
   unlockMessage: Double Jump Unlocked!   Press "Space" twice to Double Jump
   unlockText: {fileID: 1739114717}

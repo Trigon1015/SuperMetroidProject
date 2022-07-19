@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
     private PlayerAbilityTracker abilities;
     public bool canMove;
 
+    //game manager
+    public static bool bossBeat = false;
+    public static bool brickDestroy = false;
     void Start()
     {
         abilities = GetComponent<PlayerAbilityTracker>();
@@ -86,7 +89,14 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove && Time.timeScale != 0)
         {
-
+            if(PlayerAbilityTracker.canDoubleJump)
+            {
+                brickDestroy = true;
+            }
+            else
+            {
+                brickDestroy = false;
+            }
 
             if (dashRechargeCounter > 0)
             {
@@ -98,6 +108,7 @@ public class PlayerController : MonoBehaviour
                 {
                     dashCounter = dashTime;
                     ShowAfterImage();
+                    AudioManager.instance.PlaySFXAdjusted(7);
                 }
             }
             if (dashCounter > 0)
@@ -173,7 +184,7 @@ public class PlayerController : MonoBehaviour
                     duck = false;
                     anim.SetBool("duck", duck);
                     canDoubleJump = true;
-
+                    AudioManager.instance.PlaySFXAdjusted(12);
 
                 }
                 else
@@ -181,6 +192,8 @@ public class PlayerController : MonoBehaviour
                     canDoubleJump = false;
 
                     anim.SetTrigger("doubleJump");
+
+                    AudioManager.instance.PlaySFXAdjusted(9);
 
                 }
 
@@ -248,11 +261,13 @@ public class PlayerController : MonoBehaviour
                     {
 
                         Instantiate(BaseBullet, duckPoint.position, duckPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+                        AudioManager.instance.PlaySFXAdjusted(14);
 
                     }
                     else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
                     {
                         Instantiate(freezeBeam, duckPoint.position, duckPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+                        AudioManager.instance.PlaySFXAdjusted(14);
 
                     }
 
@@ -271,11 +286,13 @@ public class PlayerController : MonoBehaviour
                     {
 
                         Instantiate(BaseBullet, shotUpPoint.position, shotUpPoint.rotation).moveDir = new Vector2(0f, transform.localScale.y);
+                        AudioManager.instance.PlaySFXAdjusted(14);
 
                     }
                     else if (standing.activeSelf && PlayerAbilityTracker.canFreeze)
                     {
                         Instantiate(freezeBeam, shotUpPoint.position, shotUpPoint.rotation).moveDir = new Vector2(0f, transform.localScale.y);
+                        AudioManager.instance.PlaySFXAdjusted(14);
 
 
                     }
@@ -295,6 +312,7 @@ public class PlayerController : MonoBehaviour
 
                         Instantiate(BaseBullet, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
                         anim.SetTrigger("shotFired");
+                        AudioManager.instance.PlaySFXAdjusted(14);
 
 
 
@@ -305,12 +323,14 @@ public class PlayerController : MonoBehaviour
                         Instantiate(freezeBeam, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
 
                         anim.SetTrigger("shotFired");
+                        AudioManager.instance.PlaySFXAdjusted(14);
 
                     }
                     else if (ball.activeSelf && PlayerAbilityTracker.canDropBomb)
                     {
 
                         Instantiate(bomb, bombPoint.position, bombPoint.rotation);
+                        AudioManager.instance.PlaySFXAdjusted(13);
                     }
                 }
             }
@@ -326,7 +346,7 @@ public class PlayerController : MonoBehaviour
                         anim.SetBool("duck", duck);
                         ball.SetActive(true);
                         standing.SetActive(false);
-
+                        AudioManager.instance.PlaySFX(6);
                     }
                 }
                 else
@@ -343,7 +363,7 @@ public class PlayerController : MonoBehaviour
                     {
                         ball.SetActive(false);
                         standing.SetActive(true);
-
+                        AudioManager.instance.PlaySFX(10);
                     }
                 }
                 else

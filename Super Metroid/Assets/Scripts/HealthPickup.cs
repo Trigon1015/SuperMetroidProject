@@ -16,6 +16,8 @@ public class HealthPickup : MonoBehaviour
             {
                 Instantiate(pickupEffect, transform.position, Quaternion.identity);
             }
+
+            AudioManager.instance.PlaySFX(5);
             Destroy(gameObject);
         }
     }

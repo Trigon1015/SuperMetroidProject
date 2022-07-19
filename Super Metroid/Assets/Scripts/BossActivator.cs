@@ -13,8 +13,13 @@ public class BossActivator : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            bossToActivate.SetActive(true);
-            gameObject.SetActive(false);
+            if(!PlayerController.bossBeat)
+            {
+                bossToActivate.SetActive(true);
+                gameObject.SetActive(false);
+            }
+           
+            
         }
     }
 }

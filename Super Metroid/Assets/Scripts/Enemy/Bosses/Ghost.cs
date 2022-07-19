@@ -28,6 +28,7 @@ public class Ghost : MonoBehaviour
     public GameObject winObjects;
 
     private bool battleEnded;
+    
 
     private void Start()
     {
@@ -172,6 +173,9 @@ public class Ghost : MonoBehaviour
 
                 theCam.enabled = true;
                 gameObject.SetActive(false);
+
+                AudioManager.instance.PlayLevelMusic2();
+                PlayerController.bossBeat = true;
             }
         }
     }
