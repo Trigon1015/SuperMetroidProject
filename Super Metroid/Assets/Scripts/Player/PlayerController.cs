@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public Transform standPoint;
     public Transform topRight;
     public Transform bottomLeft;
-    
+    public CapsuleCollider2D CC;
     
     
     
@@ -248,6 +248,8 @@ public class PlayerController : MonoBehaviour
             }
             if (duck)
             {
+                CC.size = new Vector2(CC.size.x, 1.4f);
+                CC.offset = new Vector2(CC.offset.x, -0.7f);
                 if (Input.GetKey(KeyCode.W))
                 {
                     duck = false;
@@ -272,6 +274,11 @@ public class PlayerController : MonoBehaviour
                     }
 
                 }
+            }
+            else
+            {
+                CC.size = new Vector2(CC.size.x, 2.47829f);
+                CC.offset = new Vector2(CC.offset.x, -0.2657988f);
             }
 
             //shooting up

@@ -52,6 +52,7 @@ public class DoorController : MonoBehaviour
 
     IEnumerator UseDoorCo()
     {
+        
         playerExiting = true;
 
         thePlayer.anim.enabled = false;
@@ -64,7 +65,7 @@ public class DoorController : MonoBehaviour
         thePlayer.anim.enabled = true;
 
         UiController.instance.StartFadeFromBlack();
-
+        
         SceneManager.LoadScene(levelToLoad);
        
     }

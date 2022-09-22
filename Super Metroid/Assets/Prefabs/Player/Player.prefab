@@ -212,6 +212,7 @@ MonoBehaviour:
   standPoint: {fileID: 8625598305833352074}
   topRight: {fileID: 8625598306051466554}
   bottomLeft: {fileID: 8625598304312626224}
+  CC: {fileID: 8625598305608492401}
   anim: {fileID: 8625598305608492400}
   whatIsGround:
     serializedVersion: 2
