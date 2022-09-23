@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6244455003160950868}
   - component: {fileID: 1542478023418999438}
   - component: {fileID: 1410160422059277392}
-  - component: {fileID: 1385300684184861514}
   - component: {fileID: 8023033883205804425}
+  - component: {fileID: -9187995507156047164}
   m_Layer: 7
   m_Name: freezeBeam
   m_TagString: FreezeBeam
@@ -135,23 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1385300684184861514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677766425150900436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c53b4bc77d3a34281e57d7c99da0d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 20
-  rb: {fileID: 1410160422059277392}
-  moveDir: {x: 1, y: 0}
-  impactEffect: {fileID: 4621840485721527582, guid: 8d2ddce18df596541abe6b9d73416f05, type: 3}
-  damageAmount: 1
 --- !u!95 &8023033883205804425
 Animator:
   serializedVersion: 4
@@ -172,3 +155,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-9187995507156047164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677766425150900436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf10e43c2980fd48a4c8d42069902e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 20
+  rb: {fileID: 1410160422059277392}
+  moveDir: {x: 1, y: 0}
+  impactEffect: {fileID: 4621840485721527582, guid: 8d2ddce18df596541abe6b9d73416f05, type: 3}
+  damageAmount: 1

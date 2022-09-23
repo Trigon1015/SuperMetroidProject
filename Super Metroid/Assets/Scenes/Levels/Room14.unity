@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6776648230471025618, guid: adc77cab992194b48a7102efa7899e0a, type: 3}
       propertyPath: levelToLoad
-      value: Room13
+      value: Room11
       objectReference: {fileID: 0}
     - target: {fileID: 6776648230471025644, guid: adc77cab992194b48a7102efa7899e0a, type: 3}
       propertyPath: m_LocalScale.x

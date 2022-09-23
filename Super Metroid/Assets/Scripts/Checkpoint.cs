@@ -35,8 +35,8 @@ public class Checkpoint : MonoBehaviour
         }
         if(charging)
         {
-            PlayerHealthController.instance.currentHealth += (PlayerHealthController.instance.maxHealth / 10);
-            
+            PlayerHealthController.instance.currentHealth += 1;
+            AudioManager.instance.PlaySFX(15);
         }
 
         if (PlayerHealthController.instance.currentHealth == PlayerHealthController.instance.maxHealth)

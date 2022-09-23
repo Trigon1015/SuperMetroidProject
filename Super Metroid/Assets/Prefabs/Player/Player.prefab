@@ -218,7 +218,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   BaseBullet: {fileID: 1484245261124155239, guid: a6bbf2d621cbc464c97c7f2724a2c6db, type: 3}
-  freezeBeam: {fileID: 1385300684184861514, guid: 2e96a57325974f340b7cb0be68774c4c, type: 3}
+  freezeBeam: {fileID: -9187995507156047164, guid: 2e96a57325974f340b7cb0be68774c4c, type: 3}
   shotPoint: {fileID: 8625598304502461735}
   shotUpPoint: {fileID: 8625598304091640668}
   duckPoint: {fileID: 8625598305529360452}

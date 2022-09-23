@@ -73,6 +73,7 @@ public class Abomination : MonoBehaviour {
 
     public void Attack()
     {
+        AudioManager.instance.PlaySFXAdjusted(16);
         Vector3 pos = attackPoint.position;
         pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
@@ -89,6 +90,16 @@ public class Abomination : MonoBehaviour {
     {
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
+        GetComponent<Collider2D>().enabled = false;
+        StartCoroutine(Death());
+        
+        
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(3f);
+        AbomBossBattle.battleEnded = true;
         
     }
 }

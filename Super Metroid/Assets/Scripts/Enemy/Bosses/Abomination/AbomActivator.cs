@@ -13,7 +13,7 @@ public class AbomActivator : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (!PlayerController.bossBeat && PlayerAbilityTracker.canDoubleJump)
+            if (!PlayerController.Abomination && PlayerAbilityTracker.canDoubleJump)
             {
                 bossToActivate.SetActive(true);
                 gameObject.SetActive(false);

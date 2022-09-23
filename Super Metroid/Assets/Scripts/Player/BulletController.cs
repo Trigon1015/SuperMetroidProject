@@ -59,6 +59,11 @@ public class BulletController : MonoBehaviour
             AbomHealthController.instance.TakeDamage(damageAmount);
         }
 
+        if (other.tag == "Demon")
+        {
+            DemonHealthContrroller.instance.TakeDamage(damageAmount);
+        }
+
         if (impactEffect != null)
         {
             Instantiate(impactEffect, transform.position, Quaternion.identity);

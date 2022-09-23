@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     public BulletController BaseBullet;
-    public BulletController freezeBeam;
+    public FreezeBeamController freezeBeam;
     public Transform shotPoint;
     public Transform shotUpPoint;
     public Transform duckPoint;
@@ -73,30 +73,27 @@ public class PlayerController : MonoBehaviour
 
     //game manager
     public static bool bossBeat = false;
+    public static bool Abomination = false;
     public static bool brickDestroy = false;
     void Start()
     {
         abilities = GetComponent<PlayerAbilityTracker>();
         canMove = true;
+
         
-        
-       
-        
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
+
         if (canMove && Time.timeScale != 0)
         {
-            if(PlayerAbilityTracker.canDoubleJump)
-            {
-                brickDestroy = true;
-            }
-            else
-            {
-                brickDestroy = false;
-            }
+            
 
             if (dashRechargeCounter > 0)
             {

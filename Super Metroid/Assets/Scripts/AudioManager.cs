@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
 
         
     }
-    public AudioSource mainMenuMusic, levelMusic, bossMusic, levelMusic2;
+    public AudioSource mainMenuMusic, levelMusic, bossMusic, levelMusic2, abomMusic;
     public AudioSource[] sfx;
 
     public void PlayMainMenuMusic()
@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
         levelMusic.Stop();
         levelMusic2.Stop();
         bossMusic.Stop();
+        abomMusic.Stop();
         mainMenuMusic.Play();
     }
 
@@ -37,6 +38,7 @@ public class AudioManager : MonoBehaviour
         if(!levelMusic.isPlaying && !levelMusic2.isPlaying)
         {
             bossMusic.Stop();
+            abomMusic.Stop();
             mainMenuMusic.Stop();
             
             levelMusic.Play();
@@ -51,6 +53,7 @@ public class AudioManager : MonoBehaviour
             bossMusic.Stop();
             mainMenuMusic.Stop();
             levelMusic.Stop();
+            abomMusic.Stop();
             levelMusic2.Play();
         }
 
@@ -61,6 +64,14 @@ public class AudioManager : MonoBehaviour
         levelMusic.Stop();
         levelMusic2.Stop();
         bossMusic.Play();
+    }
+
+    public void PlayAbomMusic()
+    {
+        levelMusic.Stop();
+        levelMusic2.Stop();
+        abomMusic.Play();
+
     }
 
     public void PlaySFX(int sfxToPlay)

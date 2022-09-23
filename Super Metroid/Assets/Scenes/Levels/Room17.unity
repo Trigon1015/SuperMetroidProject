@@ -5203,7 +5203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354088651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -91.1, y: -40, z: 0}
+  m_LocalPosition: {x: 5.8, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5243,8 +5243,8 @@ MonoBehaviour:
   anim: {fileID: 912535390}
   distanceToOpen: 5
   exitPoint: {fileID: 1354088652}
-  movePlayerSpeed: 200
-  levelToLoad: Room1
+  movePlayerSpeed: 10
+  levelToLoad: Room18
 --- !u!61 &1369692058
 BoxCollider2D:
   m_ObjectHideFlags: 0
