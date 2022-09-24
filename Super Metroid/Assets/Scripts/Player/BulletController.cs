@@ -64,6 +64,11 @@ public class BulletController : MonoBehaviour
             DemonHealthContrroller.instance.TakeDamage(damageAmount);
         }
 
+        if(other.tag == "Wind")
+        {
+            Destroy(gameObject);
+        }
+
         if (impactEffect != null)
         {
             Instantiate(impactEffect, transform.position, Quaternion.identity);

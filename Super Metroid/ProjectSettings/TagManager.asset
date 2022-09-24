@@ -11,6 +11,9 @@ TagManager:
   - Abomination
   - Obstacle
   - Demon
+  - Wind
+  - SmashHeight
+  - ThunderHeight
   layers:
   - Default
   - TransparentFX

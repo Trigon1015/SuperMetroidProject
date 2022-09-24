@@ -61,11 +61,13 @@ public class FreezeBeamController : MonoBehaviour
 
         if(other.tag == "Obstacle")
         {
-            
-            FireWallController.Health -= damageAmount;
+
+            FireWallController.instance.DamageEnemy(damageAmount);
         }
 
-        if(other.tag == "Demon")
+        
+
+        if (other.tag == "Demon")
         {
             DemonHealthContrroller.instance.TakeDamage(damageAmount);
         }
