@@ -5,6 +5,8 @@ using UnityEngine;
 public class DemonActivator : MonoBehaviour
 {
     public GameObject bossToActivate;
+    public GameObject Door;
+    public GameObject Wall;
     private void Start()
     {
         bossToActivate.SetActive(false);
@@ -13,9 +15,11 @@ public class DemonActivator : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (!PlayerController.Abomination)
+            if (!PlayerController.Demon && PlayerAbilityTracker.canGravityReverse) 
             {
                 bossToActivate.SetActive(true);
+                Wall.SetActive(true);
+                Door.SetActive(false);
                 gameObject.SetActive(false);
             }
 

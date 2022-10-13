@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     //game manager
     public static bool bossBeat = false;
     public static bool Abomination = false;
+    public static bool Demon = false;
     public static bool brickDestroy = false;
     void Start()
     {

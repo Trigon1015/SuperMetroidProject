@@ -15,7 +15,7 @@ public class BossHealthController : MonoBehaviour
 
     public int currentHealth = 50;
 
-    public Abomination theBoss; 
+    public Ghost theBoss; 
     // Start is called before the first frame update
     void Start()
     {

@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8625598305673980816}
   - component: {fileID: 8625598305673980818}
   - component: {fileID: 8625598305673980817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball Sprite
   m_TagString: Player
   m_Icon: {fileID: 0}

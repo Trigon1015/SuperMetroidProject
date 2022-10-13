@@ -10,10 +10,13 @@ public class DemonBossBattle : MonoBehaviour
 
     public int threshold1, threshold2;
 
-    public Transform player;
+    private GameObject player;
 
     public GameObject Thunder;
     public Transform thunderPoint;
+
+    public GameObject portal;
+    
     //phase 1
     private float fireWallCounter;
     public float fireWallCD;
@@ -25,7 +28,7 @@ public class DemonBossBattle : MonoBehaviour
     public GameObject Wizzard;
 
     //Phase 2
-    public bool transform = false;
+    private bool transform = false;
     public GameObject Vampire;
     public bool smash;
     public bool dash;
@@ -38,6 +41,12 @@ public class DemonBossBattle : MonoBehaviour
     public Transform smashPoint;
     public Transform smashHeight;
 
+    private bool attacking;
+
+    //Phase 3
+    private bool transform2 = false;
+    public GameObject Demon;
+
     
     // Start is called before the first frame update
     void Start()
@@ -49,6 +58,9 @@ public class DemonBossBattle : MonoBehaviour
         beamCounter = beamCD;
 
         smashCounter = smashCD;
+        AudioManager.instance.PlayAbomMusic();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -84,9 +96,11 @@ public class DemonBossBattle : MonoBehaviour
         }
         else if(DemonHealthContrroller.instance.currentHealth <= threshold1 && DemonHealthContrroller.instance.currentHealth > threshold2)
         {
+            
             if(!transform)
             {
                 Instantiate(Thunder, thunderPoint.position, Quaternion.identity);
+                AudioManager.instance.PlaySFX(17);
 
                 StartCoroutine(Transform1());
                 
@@ -95,14 +109,29 @@ public class DemonBossBattle : MonoBehaviour
             if(smashCounter > 0)
             {
                 smashCounter -= Time.deltaTime;
+                attacking = false;
             }
             else
             {
-
+                attacking = true;
                 Instantiate(vampireSmash, smashPoint.position,vampireSmash.transform.rotation);
                 smashCounter = smashCD;
             }
 
+        }
+        else if (DemonHealthContrroller.instance.currentHealth <= threshold2 && DemonHealthContrroller.instance.currentHealth >0)
+        {
+            if(!transform2)
+            {
+                StartCoroutine(Transform2());
+                transform2 = true;
+            }
+
+
+        }
+        else
+        {
+            theCam.enabled = true;
         }
     }
 
@@ -111,16 +140,41 @@ public class DemonBossBattle : MonoBehaviour
 
     public IEnumerator Transform1()
     {
+        AudioManager.instance.PlayFinalBossMusic();
         Wizzard.SetActive(false);
         yield return new WaitForSeconds(0.3f);
         Vampire.SetActive(true);
+        Instantiate(portal, Vampire.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        Vampire.SetActive(false);
     }
 
-    
-    public void EndBattle()
+    public IEnumerator Transform2()
     {
-        gameObject.SetActive(false);
+        Vampire.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        Instantiate(Thunder, thunderPoint.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(17);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(Thunder, thunderPoint.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(17);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(Thunder, thunderPoint.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(17);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(Thunder, thunderPoint.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(17);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(Thunder, thunderPoint.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(17);
+        yield return new WaitForSeconds(0.1f);
+        Vampire.SetActive(false);
+        Demon.SetActive(true);
+        
     }
+
+
+    
 
      
     

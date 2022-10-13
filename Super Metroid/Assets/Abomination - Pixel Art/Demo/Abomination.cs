@@ -8,7 +8,7 @@ public class Abomination : MonoBehaviour {
 
     private Animator            m_animator;
     private Rigidbody2D         rb;
-    public Transform player;
+    private GameObject player;
     public bool isFlipped =false;
 
     public Vector3 attackOffset;
@@ -24,11 +24,12 @@ public class Abomination : MonoBehaviour {
     {
         m_animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
         
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
 
 
@@ -37,14 +38,12 @@ public class Abomination : MonoBehaviour {
 
 
 
-       
-        //Hurt
-        if (Input.GetKeyDown("q"))
-            m_animator.SetTrigger("Hurt");
+
+
 
 
         //Walk
-        else if (rb.velocity.magnitude != 0)
+        if (rb.velocity.magnitude != 0)
             m_animator.SetInteger("AnimState", 1);
 
         //Idle
@@ -57,13 +56,13 @@ public class Abomination : MonoBehaviour {
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
 
-        if(transform.position.x > player.position.x && isFlipped)
+        if(transform.position.x > player.transform.position.x && isFlipped)
         {
             transform.localScale = flipped;
             transform.Rotate(0f, -180f, 0f);
             isFlipped = false;
         }
-        else if (transform.position.x < player.position.x && !isFlipped)
+        else if (transform.position.x < player.transform.position.x && !isFlipped)
         {
             transform.localScale = flipped;
             transform.Rotate(0f, -180f, 0f);

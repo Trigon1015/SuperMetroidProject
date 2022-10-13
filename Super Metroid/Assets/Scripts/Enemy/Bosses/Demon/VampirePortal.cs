@@ -33,6 +33,7 @@ public class VampirePortal : MonoBehaviour
     public void ThunderE()
     {
         Instantiate(Thunder, new Vector2(transform.position.x, transform.position.y-7),Quaternion.identity);
+        AudioManager.instance.PlaySFX(17);
     }
 
     

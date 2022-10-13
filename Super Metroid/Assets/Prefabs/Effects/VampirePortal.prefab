@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -963550147
   m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d9711a218d72e23489a50d9b9b17a8b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -119,6 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Thunder: {fileID: 2040838908763455925, guid: b562717b00b228449a0b5a4f6f060d3f, type: 3}
-  thunderHeight: {fileID: 0}
   vampireSmash: {fileID: 1110563909818569287, guid: ba4276ab1fb203c4ba554bb1927b1f00, type: 3}
-  smashHeight: {fileID: 0}

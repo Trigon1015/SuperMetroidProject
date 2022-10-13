@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DemonHealthContrroller : MonoBehaviour
 {
     public static DemonHealthContrroller instance;
+    public GameObject Wall;
+    public GameObject Door;
     private void Awake()
     {
         instance = this;
@@ -14,7 +16,8 @@ public class DemonHealthContrroller : MonoBehaviour
     public Slider bossHealthSlider;
     public int currentHealth = 200;
 
-    public DemonBossBattle Demon;
+   
+    public Demon demon;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +32,12 @@ public class DemonHealthContrroller : MonoBehaviour
         {
             currentHealth = 0;
 
-            Demon.EndBattle();
+            demon.EndBattle();
+            Wall.SetActive(false);
+            Door.SetActive(true);
+            PlayerController.Demon = true;
+            
+
         }
 
         bossHealthSlider.value = currentHealth;
